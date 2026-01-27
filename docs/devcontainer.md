@@ -4,7 +4,7 @@ This project uses a devcontainer with Docker Compose that provides all necessary
 
 ## Setup
 
-1. Open the project in VS Code/Cursor
+1. Open the project in VS Code/Cursor/Zed
 2. Select "Reopen in Container" when prompted
 3. All services start automatically via Docker Compose
 4. Wait for initialization to complete (MongoDB replica set setup, etc.)

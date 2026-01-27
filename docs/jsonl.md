@@ -123,28 +123,28 @@ SELECT * FROM databases;
 ```
 
 Expected output:
-```json
+```surql
 [
-  {
-    "id": "databases:db1",
-    "name": "Documentation",
-    "description": "Main documentation database",
-    "created_at": "2023-12-01T10:00:00Z",
-    "properties": {
-      "status": "active",
-      "version": 1.0
-    }
-  },
-  {
-    "id": "databases:db2",
-    "name": "API Docs",
-    "description": "API reference documentation",
-    "created_at": "2023-12-15T10:00:00Z",
-    "properties": {
-      "status": "beta",
-      "version": 0.5
-    }
-  }
+	{
+		created_at: '2023-12-01T10:00:00Z',
+		description: 'Main documentation database',
+		id: 'databases:db1',
+		name: 'Documentation',
+		properties: {
+			status: 'active',
+			version: 1
+		}
+	},
+	{
+		created_at: '2023-12-15T10:00:00Z',
+		description: 'API reference documentation',
+		id: 'databases:db2',
+		name: 'API Docs',
+		properties: {
+			status: 'beta',
+			version: 0.5f
+		}
+	}
 ]
 ```
 
@@ -154,23 +154,23 @@ SELECT id, title, parent FROM pages;
 ```
 
 Expected output:
-```json
+```surql
 [
-  {
-    "id": "pages:page1",
-    "title": "Getting Started",
-    "parent": "databases:db1"
-  },
-  {
-    "id": "pages:page2",
-    "title": "Advanced Topics",
-    "parent": "pages:page1"
-  },
-  {
-    "id": "pages:page3",
-    "title": "API Reference",
-    "parent": "databases:db2"
-  }
+	{
+		id: 'pages:page1',
+		parent: 'databases:db1',
+		title: 'Getting Started'
+	},
+	{
+		id: 'pages:page2',
+		parent: 'pages:page1',
+		title: 'Advanced Topics'
+	},
+	{
+		id: 'pages:page3',
+		parent: 'databases:db2',
+		title: 'API Reference'
+	}
 ]
 ```
 
@@ -185,18 +185,18 @@ SELECT id, type, text FROM blocks WHERE parent = pages:page1;
 ```
 
 Expected output:
-```json
+```surql
 [
-  {
-    "id": "blocks:block1",
-    "type": "paragraph",
-    "text": "This is a paragraph block"
-  },
-  {
-    "id": "blocks:block2",
-    "type": "heading",
-    "text": "Introduction"
-  }
+	{
+		id: 'blocks:block1',
+		text: 'This is a paragraph block',
+		type: 'paragraph'
+	},
+	{
+		id: 'blocks:block2',
+		text: 'Introduction',
+		type: 'heading'
+	}
 ]
 ```
 
@@ -219,19 +219,19 @@ SELECT *, parent.* FROM pages:page2;
 ```
 
 Result:
-```json
+```surql
 {
-  "id": "pages:page2",
-  "title": "Advanced Topics",
-  "content": "Deep dive into advanced features",
-  "created_at": "2024-01-02T10:00:00Z",
-  "parent": {
-    "id": "pages:page1",
-    "title": "Getting Started",
-    "content": "Welcome to our documentation",
-    "created_at": "2024-01-01T10:00:00Z",
-    "parent": "databases:db1"
-  }
+	content: 'Deep dive into advanced features',
+	created_at: '2024-01-02T10:00:00Z',
+	id: 'pages:page2',
+	parent: {
+		content: 'Welcome to our documentation',
+		created_at: '2024-01-01T10:00:00Z',
+		id: 'pages:page1',
+		parent: 'databases:db1',
+		title: 'Getting Started'
+	},
+	title: 'Advanced Topics'
 }
 ```
 

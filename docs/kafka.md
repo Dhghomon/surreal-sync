@@ -81,7 +81,6 @@ surreal-sync from kafka \
 
 **Note on Batch Sizes:** There are TWO different batch size parameters:
 - `--kafka-batch-size` controls how many decoded protobuf messages are fetched and processed per batch (affects Kafka consumer throughput and memory usage)
-- `--batch-size` controls how many records are written to SurrealDB per batch (affects SurrealDB write performance)
 
 ### Behavior Settings
 
@@ -433,7 +432,7 @@ For production deployments that need continuous consumption:
 **Solutions:**
 - Ensure ID field contains valid ID types (int32, int64, string, UUID)
 - Check that ID values are not null, arrays, or complex objects
-- SurrealDB IDs support: integers, strings, and UUIDs only
+- SurrealDB IDs support: integers, strings, UUIDs, and arrays
 
 ### Memory Issues with Large Batches
 
